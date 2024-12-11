@@ -1,5 +1,9 @@
+"use client";
 import { PT_Sans } from "next/font/google";
 import "./globals.css";
+import { BrowserRouter } from "react-router-dom";
+import { Header } from "@/components/shared";
+import { AdminPages } from "@/components/shared/dashboardAdmin/administrationPage";
 
 const PTSans = PT_Sans({
   subsets: ["cyrillic"],
@@ -17,7 +21,15 @@ export default function RootLayout({
       <head>
         <link data-rh="true" rel="icon" href="/logo.png" />
       </head>
-      <body className={`${PTSans.variable}`}>{children}</body>
+      <body className={`${PTSans.variable}`}>
+        <main>
+          <Header />
+          <BrowserRouter>
+            <AdminPages />
+            {children}
+          </BrowserRouter>
+        </main>
+      </body>
     </html>
   );
 }
