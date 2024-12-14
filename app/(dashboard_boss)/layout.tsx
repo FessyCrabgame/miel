@@ -22,13 +22,13 @@ export default function RootLayout({
         <link data-rh="true" rel="icon" href="/logo.png" />
       </head>
       <body className={`${PTSans.variable}`}>
-        <main>
+        <BrowserRouter>
           <Header />
-          <BrowserRouter>
+          <main className="flex ">
             <BossPages />
             {children}
-          </BrowserRouter>
-        </main>
+          </main>
+        </BrowserRouter>
       </body>
     </html>
   );

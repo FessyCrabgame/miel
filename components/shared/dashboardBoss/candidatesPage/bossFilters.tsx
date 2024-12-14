@@ -9,7 +9,7 @@ interface Props {
 export const BossFilters: React.FC<Props> = ({ className }) => {
   return (
     <div className={cn("", className)}>
-      <div className="pt-8 pl-[-23px] flex justify-between">
+      <div className="pt-8 pl-[-23px] flex gap-4">
         <DropdownMenu>
           <DropdownMenuTrigger className="border-black border-solid border-opacity-40 w-[196px] border-[1px] h-[34px]">
             <div className="flex justify-between opacity-40">

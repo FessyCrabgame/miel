@@ -15,6 +15,7 @@ interface candidatObject {
   achievements: number[];
   town: string;
   index: number;
+  favored?: boolean;
 }
 
 interface adminObject {
@@ -131,6 +132,7 @@ export const objectData: candidatObject[] = [
     achievements: [0, 6],
     town: "Москва",
     index: 0,
+    favored: true,
   },
   {
     name: "Романова Мария Ивановна",
@@ -140,17 +142,6 @@ export const objectData: candidatObject[] = [
     image: "https://loremflickr.com/200/200?random=1",
     curses: [2, 2, 1, 0],
     achievements: [0, 6],
-    town: "Москва",
-    index: 0,
-  },
-  {
-    name: "Романова Мария Ивановна",
-    birthData: "05.11.2000 (24 года)",
-    education: "Высшее",
-    link: "Ссылка на резюме",
-    image: "https://loremflickr.com/200/200?random=1",
-    curses: [2, 2, 1, 0],
-    achievements: [5, 6],
     town: "Москва",
     index: 1,
   },
@@ -175,6 +166,7 @@ export const objectData: candidatObject[] = [
     achievements: [5, 6],
     town: "Москва",
     index: 3,
+    favored: true,
   },
   {
     name: "Романова Мария Ивановна",
@@ -186,6 +178,18 @@ export const objectData: candidatObject[] = [
     achievements: [5, 6],
     town: "Москва",
     index: 4,
+    favored: true,
+  },
+  {
+    name: "Романова Мария Ивановна",
+    birthData: "05.11.2000 (24 года)",
+    education: "Высшее",
+    link: "Ссылка на резюме",
+    image: "https://loremflickr.com/200/200?random=1",
+    curses: [2, 2, 1, 0],
+    achievements: [5, 6],
+    town: "Москва",
+    index: 5,
   },
 ];
 
@@ -397,5 +401,239 @@ export const historyData: invitingHistory[] = [
     image: "https://loremflickr.com/200/200?random=1",
     index: 21,
     data: "15.02.2024",
+  },
+];
+
+interface quotes {
+  period: string;
+  vidano: number;
+  invitings: number;
+  employment: number;
+  rejections: number;
+  snyato: number;
+  index: number;
+}
+
+export const quotesData: quotes[] = [
+  {
+    period: "Январь",
+    vidano: 20,
+    invitings: 18,
+    employment: 15,
+    rejections: 3,
+    snyato: 2,
+    index: 0,
+  },
+  {
+    period: "Февраль",
+    vidano: 20,
+    invitings: 18,
+    employment: 15,
+    rejections: 3,
+    snyato: 2,
+    index: 1,
+  },
+  {
+    period: "Март",
+    vidano: 20,
+    invitings: 18,
+    employment: 15,
+    rejections: 3,
+    snyato: 2,
+    index: 2,
+  },
+  {
+    period: "Апрель",
+    vidano: 20,
+    invitings: 18,
+    employment: 15,
+    rejections: 3,
+    snyato: 2,
+    index: 3,
+  },
+  {
+    period: "Май",
+    vidano: 20,
+    invitings: 18,
+    employment: 15,
+    rejections: 3,
+    snyato: 2,
+    index: 4,
+  },
+  {
+    period: "Июнь",
+    vidano: 20,
+    invitings: 18,
+    employment: 15,
+    rejections: 3,
+    snyato: 2,
+    index: 5,
+  },
+  {
+    period: "Июль",
+    vidano: 20,
+    invitings: 18,
+    employment: 15,
+    rejections: 3,
+    snyato: 2,
+    index: 6,
+  },
+  {
+    period: "Август",
+    vidano: 20,
+    invitings: 18,
+    employment: 15,
+    rejections: 3,
+    snyato: 2,
+    index: 7,
+  },
+  {
+    period: "Сентябрь",
+    vidano: 20,
+    invitings: 18,
+    employment: 15,
+    rejections: 3,
+    snyato: 2,
+    index: 8,
+  },
+  {
+    period: "Октябрь",
+    vidano: 20,
+    invitings: 18,
+    employment: 15,
+    rejections: 3,
+    snyato: 2,
+    index: 9,
+  },
+  {
+    period: "Ноябрь",
+    vidano: 20,
+    invitings: 18,
+    employment: 15,
+    rejections: 3,
+    snyato: 2,
+    index: 10,
+  },
+  {
+    period: "Декабрь",
+    vidano: 20,
+    invitings: 18,
+    employment: 15,
+    rejections: 3,
+    snyato: 2,
+    index: 11,
+  },
+];
+
+interface messages {
+  data: string;
+  time: string;
+  message: string;
+  id: number;
+}
+
+interface chatters {
+  name: string;
+  avatar: string;
+  myMessages: messages[];
+  hisMessages: messages[];
+  index: number;
+}
+
+export const messageData: chatters[] = [
+  {
+    name: "Романова Мария",
+    avatar: "https://loremflickr.com/200/200?random=1",
+    myMessages: [
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 0 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 1 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 2 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 3 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 4 },
+    ],
+    hisMessages: [
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 0 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 1 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 2 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 3 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 4 },
+    ],
+    index: 0,
+  },
+  {
+    name: "Романова Мария",
+    avatar: "https://loremflickr.com/200/200?random=1",
+    myMessages: [
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 0 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 1 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 2 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 3 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 4 },
+    ],
+    hisMessages: [
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 0 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 1 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 2 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 3 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 4 },
+    ],
+    index: 1,
+  },
+  {
+    name: "Романова Мария",
+    avatar: "https://loremflickr.com/200/200?random=1",
+    myMessages: [
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 0 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 1 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 2 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 3 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 4 },
+    ],
+    hisMessages: [
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 0 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 1 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 2 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 3 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 4 },
+    ],
+    index: 2,
+  },
+  {
+    name: "Романова Мария",
+    avatar: "https://loremflickr.com/200/200?random=1",
+    myMessages: [
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 0 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 1 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 2 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 3 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 4 },
+    ],
+    hisMessages: [
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 0 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 1 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 2 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 3 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 4 },
+    ],
+    index: 3,
+  },
+  {
+    name: "Романова Мария",
+    avatar: "https://loremflickr.com/200/200?random=1",
+    myMessages: [
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 0 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 1 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 2 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 3 },
+      { data: "2024-05-14", message: "привет", time: "18:00", id: 4 },
+    ],
+    hisMessages: [
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 0 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 1 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 2 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 3 },
+      { data: "2024-05-14", message: "тыпррав", time: "18:00", id: 4 },
+    ],
+    index: 4,
   },
 ];

@@ -4,22 +4,27 @@ import { cn } from "@/lib/utils";
 import avatar from "../../../../public/assets/Ellipse 190@2x.png";
 import Image from "next/image";
 import graph from "../../../../public/assets/Frame 738001457.png";
-import {
-  ChartNoAxesColumnIncreasing,
-  Folder,
-  Grid2X2,
-  Heart,
-  Users,
-} from "lucide-react";
+import { Folder, Grid2X2, Heart, Users } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 interface Props {
   className?: string;
 }
 
 export const BossPages: React.FC<Props> = ({ className }) => {
-  const [activeCategorie, setActiveCategorie] = useState(0);
+  const location = useLocation();
+  const [activeCategorie, setActiveCategorie] = useState(
+    location.pathname == "/dashboardBossFavored"
+      ? 1
+      : location.pathname == "/dashboardBossQuotes"
+      ? 2
+      : location.pathname == "/dashboardBossInvitingHistory"
+      ? 3
+      : 0
+  );
+
   return (
     <div className={cn("", className)}>
       <div className="float-left bg-gray-200 h-[calc(100vh-71px)] w-[277px]">
@@ -47,20 +52,19 @@ export const BossPages: React.FC<Props> = ({ className }) => {
             <Grid2X2 />
             Витрина кандидатов
           </Link>
-          <p
+          <Link
+            href={"./dashboardBossFavored"}
+            onClick={() => setActiveCategorie(1)}
             className={`${
               activeCategorie == 1 && "bg-gray-300"
             } pl-[10px] p-[10px] gap-[9px] cursor-pointer hover:bg-gray-300 flex`}
           >
             <Heart />
             Избранное
-          </p>
-          <p className="flex pl-[10px] p-[10px] gap-[9px] cursor-pointer hover:bg-gray-300">
-            <ChartNoAxesColumnIncreasing /> Статистика по квотам
-          </p>
+          </Link>
           <Link
             href={"./dashboardBossInvitingHistory"}
-            onClick={() => setActiveCategorie(3)}
+            onClick={() => setActiveCategorie(2)}
             className={`${
               activeCategorie == 3 && "bg-gray-300"
             } pl-[10px] p-[10px] gap-[9px] cursor-pointer hover:bg-gray-300 flex`}
@@ -70,7 +74,7 @@ export const BossPages: React.FC<Props> = ({ className }) => {
           </Link>
           <p
             className={`${
-              activeCategorie == 1 && "bg-gray-300"
+              activeCategorie == 4 && "bg-gray-300"
             } pl-[10px] p-[10px] gap-[9px] cursor-pointer hover:bg-gray-300 flex`}
           >
             <Users />

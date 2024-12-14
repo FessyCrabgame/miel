@@ -17,7 +17,7 @@ export const HistoryTable: React.FC<Props> = ({ className }) => {
   const statusColor: string[] = ["#FF7B2F", "#00AAAD", "#991FA9"];
   const statusPosition: string[] = ["Приглашен(а)", "Трудоустроен(а)", "Отказ"];
   return (
-    <div>
+    <div className={cn("m-[53px] flex flex-col justify-between", className)}>
       <div className="flex gap-[92px] mt-10 text-xl">
         <p className="whitespace-nowrap text-xl">
           Данные с 01.02.20024 - 30.10. 2024
@@ -37,9 +37,7 @@ export const HistoryTable: React.FC<Props> = ({ className }) => {
           </div>
         </div>
       </div>
-      <Table
-        className={cn("border-solid border-[#CACBCD] border-2", className)}
-      >
+      <Table className="border-solid border-[#CACBCD] border-2">
         <TableHeader>
           <TableRow>
             <TableHead className="font-bold text-center">ФИО</TableHead>

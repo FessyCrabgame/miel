@@ -1,12 +1,22 @@
+"use client";
 import { cn } from "@/lib/utils";
-import { BossFilters, Candidate } from ".";
+import { BossFilters } from ".";
 import { objectData } from "../../consts/data";
+import { Candidate } from "../../candidate";
+import fetchEndpoint from "../../../../lib/candidates";
+import { useEffect, useState } from "react";
 
 interface Props {
   className?: string;
 }
-
 export const DashboardBossCandidates: React.FC<Props> = ({ className }) => {
+  const [candidates, setCandidates] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const endpointToCall = "/api/v1/supervisor/candidates/";
+      setCandidates(await fetchEndpoint(endpointToCall));
+    })();
+  }, []);
   return (
     <div
       className={cn(

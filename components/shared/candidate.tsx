@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { cn } from "@/lib/utils";
-import { courseProgresss } from "../../consts/data";
+import { courseProgresss } from "./consts/data";
 import { Button } from "@/components/ui";
 
 interface Props {
