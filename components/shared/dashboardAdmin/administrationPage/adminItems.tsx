@@ -1,8 +1,8 @@
-"use client";
 /* eslint-disable @next/next/no-img-element */
-
-import { cn } from "@/lib/utils";
+"use client";
 import {
+  Button,
+  Input,
   Table,
   TableBody,
   TableCell,
@@ -10,74 +10,49 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui";
-import { useEffect, useState } from "react";
 import fetchGetEndpoint from "@/lib/candidates";
+import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import user from "@/public/assets/tcs61nk83dig738gik8qtkcx6ue7sgek.png";
 interface Props {
   className?: string;
 }
-import Image from "next/image";
-import user from "@/public/assets/tcs61nk83dig738gik8qtkcx6ue7sgek.png";
 
-export const HistoryTable: React.FC<Props> = ({ className }) => {
-  const statusColor: string[] = [
-    "invited",
-    "#FF7B2F",
-    "accepted",
-    "#00AAAD",
-    "rejected",
-    "#991FA9",
-  ];
-  const statusPosition: string[] = [
-    "invited",
-    "Приглашен(а)",
-    "accepted",
-    "Трудоустроен(а)",
-    "rejected",
-    "Отказ",
-  ];
-  const [users, setUsers] = useState([]);
+export const AdminItems: React.FC<Props> = ({ className }) => {
+  const [candidates, setCandidates] = useState([]);
   useEffect(() => {
     (async () => {
-      const endpointToCall = "/api/supervisor/invitations/";
-      setUsers((await fetchGetEndpoint(endpointToCall)).data);
+      const endpointToCall = "/api/admin/supervisors/";
+      setCandidates((await fetchGetEndpoint(endpointToCall)).data);
     })();
   }, []);
   return (
-    <div
-      className={cn("flex flex-col justify-between", className)}
-      onClick={() => console.log(users)}
-    >
-      <div className="flex gap-[92px] mt-10 text-xl">
-        <p className="whitespace-nowrap text-xl">
-          Данные с 01.02.20024 - 30.10. 2024
-        </p>
-        <div className="flex gap-11">
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-[#FF7B2F]" />
-            <p>Приглашен(а)</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-[#00AAAD]" />
-            <p>Трудоустроен(а)</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-4 h-4 bg-[#991FA9]" />
-            <p>Отказ</p>
-          </div>
-        </div>
+    <div className={cn("", className)}>
+      <div className="pt-8 pl-[-23px] flex gap-4">
+        <Input
+          className="rounded-none w-[696px]"
+          placeholder="Найти руководителя"
+        />
+        <Button className="bg-white w-[160px] text-black border-[#960047] border-solid border-[1px] rounded-none hover:bg-[#960047]">
+          Поиск
+        </Button>
+        <Button className="bg-[#960047] w-[160px] rounded-none hover:bg-[#960046a9]">
+          Добавить руководителя
+        </Button>
       </div>
       <Table className="border-solid border-[#CACBCD] border-2">
         <TableHeader>
           <TableRow>
             <TableHead className="font-bold text-center">ФИО</TableHead>
             <TableHead className="font-bold">Город</TableHead>
-            <TableHead className="font-bold">Возраст</TableHead>
-            <TableHead className="font-bold ">Статус</TableHead>
-            <TableHead className="font-bold">Дата</TableHead>
+            <TableHead className="font-bold">Телефон</TableHead>
+            <TableHead className="font-bold ">Email</TableHead>
+            <TableHead className="font-bold">Офис</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {users.map((objectData) => (
+          {candidates.map((objectData) => (
             <TableRow key={objectData.index}>
               <TableCell className="flex items-center gap-3 justify-center">
                 {objectData.photo ? (
@@ -98,7 +73,7 @@ export const HistoryTable: React.FC<Props> = ({ className }) => {
                   />
                 )}
 
-                <p>{objectData.name}</p>
+                <p>{objectData.user.username}</p>
               </TableCell>
               <TableCell>{objectData.city}</TableCell>
               <TableCell>{objectData.age} года</TableCell>

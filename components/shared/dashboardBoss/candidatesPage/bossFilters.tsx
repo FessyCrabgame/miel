@@ -46,9 +46,6 @@ export const BossFilters: React.FC<Props> = ({ className }) => {
           Искать
         </Button>
       </div>
-      <p className="mt-4 font-semibold text-xl">
-        По вашему запросу найдено 29 кандидатов
-      </p>
     </div>
   );
 };

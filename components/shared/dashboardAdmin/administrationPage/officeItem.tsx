@@ -20,12 +20,19 @@ export const OfficeItem: React.FC<Props> = ({
   index,
   candidatObject,
 }) => {
-  const colors: string[] = ["[#FF5E01]", "[#9CC700]", "[#01BEC2]", "[#FFCB05]"];
+  const colors: string[] = [
+    "border-b-[#FF5E01]",
+    "border-b-[#9CC700]",
+    "border-b-[#01BEC2]",
+    "border-b-[#FFCB05]",
+  ];
   return (
     <div className={cn("", className)}>
       <div
         key={index}
-        className={`border-solid border-[1px] border-gray-300 w-[416px] h-[290px] p-5 border-b-4 border-b-${colors[index]}`}
+        className={`border-solid border-[1px] border-gray-300 w-[416px] h-[290px] p-5 border-b-4 ${
+          colors[index % 4]
+        }`}
       >
         <div className="">
           <p className="opacity-50 text-base">{candidatObject.whereabout}</p>

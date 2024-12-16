@@ -8,6 +8,8 @@ import { Folder, Grid2X2, Heart, Users } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useCategoryStore } from "@/store/context";
+import user from "@/public/assets/tcs61nk83dig738gik8qtkcx6ue7sgek.png";
 
 interface Props {
   className?: string;
@@ -18,29 +20,44 @@ export const BossPages: React.FC<Props> = ({ className }) => {
   const [activeCategorie, setActiveCategorie] = useState(
     location.pathname == "/dashboardBossFavored"
       ? 1
-      : location.pathname == "/dashboardBossQuotes"
-      ? 2
       : location.pathname == "/dashboardBossInvitingHistory"
-      ? 3
+      ? 2
       : 0
   );
+  const data = useCategoryStore((state) => state.data);
 
   return (
     <div className={cn("", className)}>
       <div className="float-left bg-gray-200 h-[calc(100vh-71px)] w-[277px]">
-        <div className="flex items-center ml-6 mt-5 gap-3 ">
-          <Image
-            width={40}
-            height={40}
-            src={avatar}
-            alt="avatar"
-            className="mb-2"
-          />
-          <div>
-            <p className="text-xs font-bold">Привет, Мария 👋</p>
-            <p className="text-sm">Колесникова Мария</p>
+        {data.username !== "" ? (
+          <div className="flex items-center ml-6 mt-5 gap-3 ">
+            <Image
+              width={40}
+              height={40}
+              src={avatar}
+              alt="avatar"
+              className="mb-2"
+            />
+            <div>
+              <p className="text-xs font-bold">Привет, Мария 👋</p>
+              <p className="text-sm">Колесникова Мария</p>
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="flex items-center ml-6 mt-5 gap-3 ">
+            <Image
+              width={40}
+              height={40}
+              src={user}
+              alt="avatar"
+              className="mb-2"
+            />
+            <Link className="mb-[6px] hover:underline" href={"/authorisation"}>
+              Войти в аккаунт
+            </Link>
+          </div>
+        )}
+
         <div className="mt-12 gap-0 flex flex-col">
           <Link
             href={"./dashboardBossCandidates"}
@@ -66,7 +83,7 @@ export const BossPages: React.FC<Props> = ({ className }) => {
             href={"./dashboardBossInvitingHistory"}
             onClick={() => setActiveCategorie(2)}
             className={`${
-              activeCategorie == 3 && "bg-gray-300"
+              activeCategorie == 2 && "bg-gray-300"
             } pl-[10px] p-[10px] gap-[9px] cursor-pointer hover:bg-gray-300 flex`}
           >
             <Folder />

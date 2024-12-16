@@ -15,6 +15,7 @@ export const DashboardBossInvitingHistory: React.FC<Props> = ({
 }) => {
   return (
     <div className={cn("m-[53px] flex flex-col justify-between", className)}>
+      <p className="text-4xl">История приглашений (офис Люберцы-1)</p>
       <div>
         <div className="pt-8 pl-[-23px] flex gap-4">
           <DateFilter />

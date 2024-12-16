@@ -1,3 +1,4 @@
+"use client";
 import {
   Table,
   TableBody,
@@ -8,15 +9,27 @@ import {
 } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import { quotesData } from "../../consts/data";
+import { useEffect, useState } from "react";
+import fetchGetEndpoint from "@/lib/candidates";
 
 interface Props {
   className?: string;
 }
 
 export const QuotesTable: React.FC<Props> = ({ className }) => {
+  const [quotes, setQuotes] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const endpointToCall = "/api/supervisor/info/quota/";
+      setQuotes((await fetchGetEndpoint(endpointToCall)).data);
+    })();
+  }, []);
   return (
     <div className={cn("", className)}>
-      <p className="mt-10 text-xl">Данные с 01.01.20024 - 31.12. 2024</p>
+      <p onClick={() => console.log(quotes)} className="mt-10 text-xl">
+        Данные с 01.01.20024 - 31.12. 2024
+      </p>
       <Table className="border-solid border-[#CACBCD] border-2 ">
         <TableHeader>
           <TableRow className="h-16 bg-[#E6F9F9]">

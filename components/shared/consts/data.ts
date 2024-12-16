@@ -5,17 +5,30 @@ export const courseProgresss = [
   "не начат",
 ];
 
-interface candidatObject {
-  name: string;
-  birthData: string;
+export interface candidatObject {
+  basic_legal_course: string;
+  birth: string;
+  city: string;
+  clients: number;
+  completed_objects: number;
+  country: string;
+  course_mortgage: string;
+  course_rieltor_join: string;
+  course_taxation: string;
+  created_at: string;
   education: string;
-  link: string;
-  image: string;
-  curses: number[];
-  achievements: number[];
-  town: string;
-  index: number;
-  favored?: boolean;
+  email: string;
+  id: number;
+  is_active: true;
+  is_free: true;
+  name: string;
+  office: null;
+  patronymic: string;
+  phone: string;
+  photo: string;
+  resume: string;
+  surname: string;
+  updated_at: string;
 }
 
 interface adminObject {
@@ -118,78 +131,6 @@ export const adminData: adminObject[] = [
     phone: "+7 (495) 777-88-83",
     name: "Марина Толстик",
     mail: "info@miel.ru",
-  },
-];
-
-export const objectData: candidatObject[] = [
-  {
-    name: "Романова Мария Ивановна",
-    birthData: "05.11.2000 (24 года)",
-    education: "Высшее",
-    link: "Ссылка на резюме",
-    image: "https://loremflickr.com/200/200?random=1",
-    curses: [2, 2, 1, 0],
-    achievements: [0, 6],
-    town: "Москва",
-    index: 0,
-    favored: true,
-  },
-  {
-    name: "Романова Мария Ивановна",
-    birthData: "05.11.2000 (24 года)",
-    education: "Высшее",
-    link: "Ссылка на резюме",
-    image: "https://loremflickr.com/200/200?random=1",
-    curses: [2, 2, 1, 0],
-    achievements: [0, 6],
-    town: "Москва",
-    index: 1,
-  },
-  {
-    name: "Романова Мария Ивановна",
-    birthData: "05.11.2000 (24 года)",
-    education: "Высшее",
-    link: "Ссылка на резюме",
-    image: "https://loremflickr.com/200/200?random=1",
-    curses: [2, 2, 1, 0],
-    achievements: [5, 6],
-    town: "Москва",
-    index: 2,
-  },
-  {
-    name: "Романова Мария Ивановна",
-    birthData: "05.11.2000 (24 года)",
-    education: "Высшее",
-    link: "Ссылка на резюме",
-    image: "https://loremflickr.com/200/200?random=1",
-    curses: [2, 2, 1, 0],
-    achievements: [5, 6],
-    town: "Москва",
-    index: 3,
-    favored: true,
-  },
-  {
-    name: "Романова Мария Ивановна",
-    birthData: "05.11.2000 (24 года)",
-    education: "Высшее",
-    link: "Ссылка на резюме",
-    image: "https://loremflickr.com/200/200?random=1",
-    curses: [2, 2, 1, 0],
-    achievements: [5, 6],
-    town: "Москва",
-    index: 4,
-    favored: true,
-  },
-  {
-    name: "Романова Мария Ивановна",
-    birthData: "05.11.2000 (24 года)",
-    education: "Высшее",
-    link: "Ссылка на резюме",
-    image: "https://loremflickr.com/200/200?random=1",
-    curses: [2, 2, 1, 0],
-    achievements: [5, 6],
-    town: "Москва",
-    index: 5,
   },
 ];
 
