@@ -10,6 +10,7 @@ interface Props {
 
 export const FilterCategories: React.FC<Props> = ({ className }) => {
   const [page, setPage] = useState(true);
+
   return (
     <div
       className={cn(
@@ -20,13 +21,21 @@ export const FilterCategories: React.FC<Props> = ({ className }) => {
       <div className="flex gap-[32px]">
         <p
           onClick={() => setPage(true)}
-          className="font-medium text-3xl border-b-2 border-solid border-orange-500"
+          className={`font-medium text-3xl hover:border-b-2 hover:border-solid hover:border-orange-500 ${
+            page
+              ? "border-b-2 border-solid border-orange-500"
+              : "opacity-50 cursor-pointer"
+          }`}
         >
           Офисы
         </p>
         <p
           onClick={() => setPage(false)}
-          className="font-medium text-3xl opacity-50 hover:border-b-2 hover:border-solid hover:border-orange-500 cursor-pointer"
+          className={`font-medium text-3xl hover:border-b-2 hover:border-solid hover:border-orange-500 cursor-pointer ${
+            !page
+              ? "border-b-2 border-solid border-orange-500"
+              : "opacity-50 cursor-pointer"
+          }`}
         >
           Руководители
         </p>

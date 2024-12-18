@@ -26,7 +26,10 @@ export const Favored: React.FC<Props> = ({ className }) => {
           <p className="text-2xl">Вы пока еще никого не занесли в избранное</p>
         ) : (
           candidates.map((candidatObject) => (
-            <Candidate candidate={candidatObject} key={candidatObject.id} />
+            <Candidate
+              candidate={candidatObject.candidate}
+              key={candidatObject.id}
+            />
           ))
         )}
       </div>

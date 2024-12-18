@@ -28,7 +28,7 @@ export const QuotesTable: React.FC<Props> = ({ className }) => {
   return (
     <div className={cn("", className)}>
       <p onClick={() => console.log(quotes)} className="mt-10 text-xl">
-        Данные с 01.01.20024 - 31.12. 2024
+        Статистика за 2024
       </p>
       <Table className="border-solid border-[#CACBCD] border-2 ">
         <TableHeader>

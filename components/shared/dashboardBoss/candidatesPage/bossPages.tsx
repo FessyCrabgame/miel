@@ -22,6 +22,8 @@ export const BossPages: React.FC<Props> = ({ className }) => {
       ? 1
       : location.pathname == "/dashboardBossInvitingHistory"
       ? 2
+      : location.pathname == "/dashboardBossQuotes"
+      ? 3
       : 0
   );
   const data = useCategoryStore((state) => state.data);
@@ -89,14 +91,16 @@ export const BossPages: React.FC<Props> = ({ className }) => {
             <Folder />
             История приглашений
           </Link>
-          <p
+          <Link
+            href={"./dashboardBossQuotes"}
+            onClick={() => setActiveCategorie(3)}
             className={`${
-              activeCategorie == 4 && "bg-gray-300"
+              activeCategorie == 3 && "bg-gray-300"
             } pl-[10px] p-[10px] gap-[9px] cursor-pointer hover:bg-gray-300 flex`}
           >
             <Users />
-            Календарь встреч
-          </p>
+            Статистика по квотам
+          </Link>
         </div>
         <Image
           src={graph}

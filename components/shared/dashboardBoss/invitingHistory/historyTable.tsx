@@ -110,7 +110,9 @@ export const HistoryTable: React.FC<Props> = ({ className }) => {
                 />
                 {statusPosition[statusPosition.indexOf(objectData.status) + 1]}
               </TableCell>
-              <TableCell>{objectData.data}</TableCell>
+              <TableCell>
+                {objectData.data ? objectData.data : "Не указана"}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

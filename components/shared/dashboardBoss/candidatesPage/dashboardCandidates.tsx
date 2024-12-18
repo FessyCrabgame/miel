@@ -27,7 +27,8 @@ export const DashboardBossCandidates: React.FC<Props> = ({ className }) => {
     >
       <BossFilters />
       <p className="mt-4 font-semibold text-xl">
-        По вашему запросу найдено {candidates.length} кандидатов
+        По вашему запросу найдено {candidates ? candidates.length : ""}{" "}
+        кандидатов
       </p>
       <div className="flex  flex-wrap ml-[-10px] gap-0 w-[84vw] justify-between mt-[10px] pl-[10px] overflow-y-scroll h-[720px] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-track]:bg-gray-100">
         {candidates.length &&

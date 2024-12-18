@@ -15,20 +15,38 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import user from "@/public/assets/tcs61nk83dig738gik8qtkcx6ue7sgek.png";
+import { useRouter } from "next/navigation";
 interface Props {
   className?: string;
 }
 
 export const AdminItems: React.FC<Props> = ({ className }) => {
   const [candidates, setCandidates] = useState([]);
+  const statusColor: string[] = [
+    "invited",
+    "#FF7B2F",
+    "accepted",
+    "#00AAAD",
+    "rejected",
+    "#991FA9",
+  ];
+  const statusPosition: string[] = [
+    "invited",
+    "Приглашен(а)",
+    "accepted",
+    "Трудоустроен(а)",
+    "rejected",
+    "Отказ",
+  ];
   useEffect(() => {
     (async () => {
       const endpointToCall = "/api/admin/supervisors/";
       setCandidates((await fetchGetEndpoint(endpointToCall)).data);
     })();
   }, []);
+  const router = useRouter();
   return (
-    <div className={cn("", className)}>
+    <div className={cn("", className)} onClick={() => console.log(candidates)}>
       <div className="pt-8 pl-[-23px] flex gap-4">
         <Input
           className="rounded-none w-[696px]"
@@ -37,7 +55,12 @@ export const AdminItems: React.FC<Props> = ({ className }) => {
         <Button className="bg-white w-[160px] text-black border-[#960047] border-solid border-[1px] rounded-none hover:bg-[#960047]">
           Поиск
         </Button>
-        <Button className="bg-[#960047] w-[160px] rounded-none hover:bg-[#960046a9]">
+        <Button
+          onClick={async () => {
+            router.push("/addingAdmin");
+          }}
+          className="bg-[#960047] w-[226px] rounded-none hover:bg-[#960046a9]"
+        >
           Добавить руководителя
         </Button>
       </div>
@@ -73,19 +96,14 @@ export const AdminItems: React.FC<Props> = ({ className }) => {
                   />
                 )}
 
-                <p>{objectData.user.username}</p>
+                <p>{`${objectData.user.first_name} ${objectData.user.username} ${objectData.user.patronymic}`}</p>
               </TableCell>
-              <TableCell>{objectData.city}</TableCell>
-              <TableCell>{objectData.age} года</TableCell>
+              <TableCell>Москва</TableCell>
+              <TableCell>{objectData.user.phone}</TableCell>
               <TableCell className="flex items-center gap-3">
-                <div
-                  className={`h-[39px] w-1 bg-[${
-                    statusColor[statusColor.indexOf(objectData.status) + 1]
-                  }]`}
-                />
-                {statusPosition[statusPosition.indexOf(objectData.status) + 1]}
+                {objectData.user.email}
               </TableCell>
-              <TableCell>{objectData.data}</TableCell>
+              <TableCell>{objectData.office}</TableCell>
             </TableRow>
           ))}
         </TableBody>

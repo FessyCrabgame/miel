@@ -16,7 +16,7 @@ export const Candidate: React.FC<Props> = ({ className, candidate }) => {
     "не начат",
     "completed",
     "пройден",
-    "in_process",
+    "in_progress",
     "в процессе",
   ];
   return (
@@ -26,7 +26,7 @@ export const Candidate: React.FC<Props> = ({ className, candidate }) => {
         onClick={() => console.log(candidate)}
       >
         <div className="flex pt-[35px] pl-[17px] gap-6">
-          {candidate.photo ? (
+          {candidate.photo != "-" && candidate.photo ? (
             <img
               className="max-w-[90px] max-h-[90px]"
               src={candidate.photo}
@@ -54,8 +54,11 @@ export const Candidate: React.FC<Props> = ({ className, candidate }) => {
                 <p>Резюме</p>
               </div>
               <div className="flex flex-col text-base ml-[25px]">
-                <p>{candidate.birth}</p>
-                <p>{candidate.city}</p>
+                <p>{candidate.birth ? candidate.birth : "Не указано"}</p>
+                <p>{candidate.city ? candidate.city : "Не указано"}</p>
+                <p>
+                  {candidate.education ? candidate.education : "Не указано"}
+                </p>
                 <p>{candidate.education}</p>
                 <a className="text-rose-500" href={`${candidate.resume}`}>
                   Ссылка на резюме
@@ -130,14 +133,17 @@ export const Candidate: React.FC<Props> = ({ className, candidate }) => {
         </div>
         <div className="mt-7 pl-[17px]">
           <p className="text-2xl">Достижения</p>
-          <div className="flex gap-[63px]">
+          <div className="flex gap-[63px] mt-4">
             {candidate.clients ? (
               <div className="flex gap-2 items-center text-xl ">
                 <div className={`bg-green-600 w-3 h-3`} />
                 <p>Клиенты {candidate.clients}</p>
               </div>
             ) : (
-              ""
+              <div className="flex gap-2 items-center text-xl ">
+                <div className={`bg-green-600 w-3 h-3`} />
+                <p>Клиенты 0</p>
+              </div>
             )}
             {candidate.completed_objects ? (
               <div className="flex gap-2 items-center text-xl ">
@@ -145,7 +151,10 @@ export const Candidate: React.FC<Props> = ({ className, candidate }) => {
                 <p>Клиенты {candidate.completed_objects}</p>
               </div>
             ) : (
-              ""
+              <div className="flex gap-2 items-center text-xl ">
+                <div className={`bg-orange-600 w-3 h-3`} />
+                <p>Клиенты 0</p>
+              </div>
             )}
           </div>
         </div>

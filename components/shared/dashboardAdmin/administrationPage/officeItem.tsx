@@ -4,10 +4,9 @@ import { MessageCircle } from "lucide-react";
 interface Props {
   className?: string;
   candidatObject: {
-    whereabout: string;
-    place: string;
-    kvoti: number;
-    kvotiSaved: number;
+    location: string;
+    quota: number;
+    used_quota: number;
     phone: string;
     name: string;
     mail: string;
@@ -27,7 +26,10 @@ export const OfficeItem: React.FC<Props> = ({
     "border-b-[#FFCB05]",
   ];
   return (
-    <div className={cn("", className)}>
+    <div
+      className={cn("", className)}
+      onClick={() => console.log(candidatObject)}
+    >
       <div
         key={index}
         className={`border-solid border-[1px] border-gray-300 w-[416px] h-[290px] p-5 border-b-4 ${
@@ -35,8 +37,8 @@ export const OfficeItem: React.FC<Props> = ({
         }`}
       >
         <div className="">
-          <p className="opacity-50 text-base">{candidatObject.whereabout}</p>
-          <p className="text-xl font-semibold">{candidatObject.place}</p>
+          <p className="opacity-50 text-base">{candidatObject.location}</p>
+          <p className="text-xl font-semibold">{candidatObject.location}</p>
         </div>
         <div className="mt-[36px] flex justify-between">
           <div>
@@ -44,22 +46,26 @@ export const OfficeItem: React.FC<Props> = ({
             <p>Количество квот свободно</p>
           </div>
           <div className="flex flex-col items-end">
-            <p>{candidatObject.kvoti}</p>
-            <p>{candidatObject.kvotiSaved}</p>
+            <p>{candidatObject.quota}</p>
+            <p>{candidatObject.used_quota}</p>
           </div>
         </div>
         <div className="h-[2px] w-[376px] bg-gray-300 mt-[36px]"></div>
         <div className="flex mt-[18px] w-[376px] justify-between">
           <div>
             <p>Руководитель</p>
-            <p>{candidatObject.phone}</p>
+            <p>
+              {candidatObject.phone
+                ? candidatObject.phone
+                : "+7 (495) 777-88-83"}
+            </p>
           </div>
           <div>
             <div className="flex gap-[8px]">
               <p>{candidatObject.name}</p>
               <MessageCircle className="opacity-50" />
             </div>
-            <p>{candidatObject.mail}</p>
+            <p>{candidatObject.mail ? candidatObject.mail : "info@miel.ru"}</p>
           </div>
         </div>
       </div>
