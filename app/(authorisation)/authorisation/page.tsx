@@ -16,19 +16,16 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import Image from "next/image";
 import baloons from "@/public/assets/Скриншот-06-12-2024 16_52_58.jpg";
-import { useCategoryStore } from "@/store/context";
+import { useCategoryStore, useCTokenStore } from "@/store/context";
 import { fetchPostEndpoint } from "@/lib/candidates";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-interface Props {
-  className?: string;
-}
-
-const Authorisation: React.FC<Props> = ({ className }) => {
+const Authorisation = () => {
   const setUser = useCategoryStore((state) => state.setUser);
   const data = useCategoryStore((state) => state.data);
-  const [userWrong, setUserWrong] = useState(false);
+  const setToken = useCTokenStore((state) => state.setToken);
+
+  const userWrong = false;
   const formSchema = z.object({
     username: z.string().min(2, {
       message: "Username must be at least 2 characters.",
@@ -53,12 +50,7 @@ const Authorisation: React.FC<Props> = ({ className }) => {
   const router = useRouter();
   return (
     <div className="flex items-center w-[930px] ml-auto mr-auto">
-      <div
-        className={cn(
-          "flex items-center justify-center h-[100vh] w-[100%]",
-          className
-        )}
-      >
+      <div className="flex items-center justify-center h-[100vh] w-[100%]">
         <div className="border-solid w-[456px] border-black border-[1px] h-[552px]">
           <p className="text-3xl pt-10 pl-16 pb-[18px]">Войти</p>
           {userWrong ? (
@@ -133,12 +125,13 @@ const Authorisation: React.FC<Props> = ({ className }) => {
                       className="bg-orange-600 w-[160px] border- h-[44px] text-white"
                       type="submit"
                       onClick={async () => {
-                        await fetchPostEndpoint("/api/v1/login/", data).then(
+                        await fetchPostEndpoint("/api/login/", data, null).then(
                           (response) => {
                             if (!response.data) {
-                              setUserWrong(true);
+                              console.log(response);
                             } else {
                               router.push("/dashboardBossCandidates");
+                              setToken(response.data.token);
                             }
                           }
                         );
