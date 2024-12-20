@@ -10,7 +10,6 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -19,13 +18,14 @@ import baloons from "@/public/assets/Скриншот-06-12-2024 16_52_58.jpg";
 import { useCategoryStore, useCTokenStore } from "@/store/context";
 import { fetchPostEndpoint } from "@/lib/candidates";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const Authorisation = () => {
   const setUser = useCategoryStore((state) => state.setUser);
   const data = useCategoryStore((state) => state.data);
   const setToken = useCTokenStore((state) => state.setToken);
 
-  const userWrong = false;
+  const [userWrong, setUserWrong] = useState(false);
   const formSchema = z.object({
     username: z.string().min(2, {
       message: "Username must be at least 2 characters.",
@@ -125,16 +125,29 @@ const Authorisation = () => {
                       className="bg-orange-600 w-[160px] border- h-[44px] text-white"
                       type="submit"
                       onClick={async () => {
-                        await fetchPostEndpoint("/api/login/", data, null).then(
-                          (response) => {
-                            if (!response.data) {
-                              console.log(response);
-                            } else {
-                              router.push("/dashboardBossCandidates");
-                              setToken(response.data.token);
-                            }
+                        try {
+                          // Отправка запроса
+                          const response = await fetchPostEndpoint(
+                            "/api/login/",
+                            data,
+                            null
+                          );
+                          console.log(response);
+                          // Проверка, что ответ от сервера валиден и содержит данные
+                          if (response && response.token) {
+                            // Если все в порядке, сохраняем токен и переходим на страницу
+                            console.log(1);
+                            setToken(response.token);
+                            router.push("/dashboardBossCandidates");
+                          } else {
+                            // Если данных нет в ответе, обрабатываем ошибку
+                            setUserWrong(true);
                           }
-                        );
+                        } catch (error) {
+                          // Обработка ошибки запроса
+                          console.log(error);
+                          setUserWrong(true);
+                        }
                       }}
                     >
                       Войти
