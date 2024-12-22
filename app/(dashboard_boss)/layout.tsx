@@ -29,8 +29,10 @@ export default function RootLayout({
         <BrowserRouter>
           <Header />
           <main className="flex ">
-            <BossPages />
-            {children}
+            <p>
+              Вы переходите на страницу босса, у вас нету профиля в этой
+              категории, вернитесь на страницу администратора
+            </p>
           </main>
         </BrowserRouter>
       </body>
