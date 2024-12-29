@@ -16,11 +16,11 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import user from "@/public/assets/tcs61nk83dig738gik8qtkcx6ue7sgek.png";
 import { useRouter } from "next/navigation";
-import { useCTokenStore } from "@/store/context";
 export const AdminItems = () => {
   const [candidates, setCandidates] = useState([]);
-  const token = useCTokenStore((state) => state.token);
+  const token = localStorage.getItem("token") || "";
   useEffect(() => {
+    console.log(token);
     (async () => {
       const endpointToCall = "/api/admin/supervisors/";
       setCandidates((await fetchGetEndpoint(endpointToCall, token)).data);

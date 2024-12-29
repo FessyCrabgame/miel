@@ -2,7 +2,6 @@
 import { PT_Sans } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/shared";
-import { BossPages } from "@/components/shared/dashboardBoss/candidatesPage";
 import { BrowserRouter } from "react-router-dom";
 
 const PTSans = PT_Sans({

@@ -1,3 +1,4 @@
+/* global localStorage, */
 import { create } from "zustand";
 
 interface user {

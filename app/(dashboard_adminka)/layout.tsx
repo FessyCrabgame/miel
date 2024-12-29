@@ -26,7 +26,11 @@ export default function RootLayout({
         <BrowserRouter>
           <main className="flex ">
             <AdminPages />
-            {children}
+            {!localStorage.getItem("token") ? (
+              children
+            ) : (
+              <p>Вы не авторизованы</p>
+            )}
           </main>
         </BrowserRouter>
       </body>
