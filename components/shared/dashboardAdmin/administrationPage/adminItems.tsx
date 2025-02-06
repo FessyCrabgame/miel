@@ -33,6 +33,7 @@ export const AdminItems = () => {
     office: number;
     user: User;
     photo: string;
+    office_name: string;
   }
 
   const [candidates, setCandidates] = useState<Candidate[]>([]);
@@ -68,6 +69,7 @@ export const AdminItems = () => {
 
       if ("data" in response && Array.isArray(response.data)) {
         setCandidates(response.data);
+        console.log(response.data);
       } else {
         console.error("Error fetching candidates:", response);
       }
@@ -175,7 +177,7 @@ export const AdminItems = () => {
               <TableCell>Москва</TableCell>
               <TableCell>{objectData.user.phone || "Не указан"}</TableCell>
               <TableCell>{objectData.user.email || "Не указан"}</TableCell>
-              <TableCell>{objectData.office}</TableCell>
+              <TableCell>{objectData.office_name || "Не указан"}</TableCell>
               <TableCell onClick={() => openModal(objectData)}>
                 <Trash
                   className="opacity-50 cursor-pointer"
@@ -284,9 +286,32 @@ export const AdminItems = () => {
 
                     if (result && "error" in result) {
                       console.log(result.error);
+                      closeModal();
                     } else {
                       console.log(result);
-                      router.push("/candidates");
+                      closeModal();
+                      {
+                        (async () => {
+                          const endpointToCall = "/api/admin/supervisors/";
+                          const response = await fetchGetEndpoint(
+                            endpointToCall,
+                            token
+                          );
+
+                          if (
+                            "data" in response &&
+                            Array.isArray(response.data)
+                          ) {
+                            setCandidates(response.data);
+                            console.log(response.data);
+                          } else {
+                            console.error(
+                              "Error fetching candidates:",
+                              response
+                            );
+                          }
+                        })();
+                      }
                     }
                   }}
                   className="w-40 h-11 rounded-xl text-white bg-[#960047]"
