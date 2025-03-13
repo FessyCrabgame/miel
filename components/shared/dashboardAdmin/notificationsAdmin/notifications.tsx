@@ -138,7 +138,8 @@ export const Notifications = () => {
                   const result = await fetchPatchEndpoint(
                     `/api/admin/requests/${selectedRequest.id}`,
                     {
-                      amount: amount != null ? selectedRequest.amount : amount,
+                      amount:
+                        amount == null ? details.office_info.quota : amount,
                       status: "accepted",
                     },
                     token
@@ -177,7 +178,7 @@ export const Notifications = () => {
                   toast.error("Изменения не сохранены");
                 }
               }}
-              className="bg-[#960047] h-11 rounded-2xl w-[189px]"
+              className="bg-[#960047] h-11 rounded-2xl w-[189px]  hover:bg-[#96004669]"
             >
               Предоставить
             </Button>
@@ -186,7 +187,11 @@ export const Notifications = () => {
                 try {
                   const result = await fetchPatchEndpoint(
                     `/api/admin/requests/${selectedRequest.id}`,
-                    { amount: selectedRequest.amount, status: "waited" },
+                    {
+                      amount:
+                        amount == null ? details.office_info.quota : amount,
+                      status: "waited",
+                    },
                     token
                   );
                   console.log(result); // Устанавливаем ответ в состояние
@@ -221,13 +226,13 @@ export const Notifications = () => {
                   toast.error("Изменения не сохранены");
                 }
               }}
-              className="border-[#960047] h-11 rounded-2xl w-[189px] border-solid border-[1px] bg-white text-black"
+              className="border-[#960047] h-11 rounded-2xl w-[189px] border-solid border-[1px] bg-white text-black  hover:bg-slate-200"
             >
               Отклонить
             </Button>
             <Button
               onClick={() => setIsModalOpen(true)}
-              className="h-11 border-[#CACBCD] rounded-2xl w-[189px] border-solid border-[1px] bg-white text-black"
+              className="h-11 border-[#CACBCD] rounded-2xl w-[189px] border-solid border-[1px] bg-white text-black hover:bg-slate-200"
             >
               Другое количество
             </Button>
