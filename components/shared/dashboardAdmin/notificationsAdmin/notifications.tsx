@@ -315,17 +315,13 @@ export const Notifications = () => {
       {/* Модальное окно */}
       {isModalOpen && (
         <div
-          className="modal fade show"
+          className="modal fade show flex gap-5 items-center justify-center p-[40px] flex-col"
           style={{
-            padding: "10px 60px 10px 10px",
-            display: "block",
             zIndex: 1050,
             position: "fixed",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)", // Центрирование модального окна
-            width: "426px",
-            height: "164px",
             backgroundColor: "white", // Белый фон
             borderRadius: "10px", // Округление углов
             boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)", // Легкая тень для красоты
@@ -333,14 +329,24 @@ export const Notifications = () => {
           tabIndex={-1}
           role="dialog"
         >
-          <p>Введите количество</p>
-          <Input
-            value={amount || 0}
-            className={`rounded-xl 
+          <div className="flex justify-center items-center gap-5">
+            <p>Введите количество :</p>
+            <Input
+              value={amount || 0}
+              className={`rounded-xl  w-[100px]
                   }`} // Красная рамка при ошибке
-            placeholder="Email"
-            onInput={(e) => setAmount(Number(e.currentTarget.value))}
-          />
+              placeholder="Email"
+              onInput={(e) => setAmount(Number(e.currentTarget.value))}
+            />
+          </div>
+          <div>
+            <Button
+              className="bg-[#960047] h-11 rounded-2xl w-[189px]  hover:bg-[#96004669]"
+              onClick={() => setIsModalOpen(false)}
+            >
+              Закрыть окно
+            </Button>
+          </div>
         </div>
       )}
     </div>
