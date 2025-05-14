@@ -197,7 +197,13 @@ export const PersonalInfo = ({ data }: PersonalInfoProps) => {
             try {
               const result = await fetchPatchEndpoint(
                 `/api/admin/candidates/${data.id}`,
-                employee,
+                {
+                  ...employee,
+                  birth: (() => {
+                    const [day, month, year] = employee.birth.split(".");
+                    return `${year}-${month}-${day}`;
+                  })(),
+                },
                 token
               );
               console.log(result); // Устанавливаем ответ в состояние
@@ -215,7 +221,10 @@ export const PersonalInfo = ({ data }: PersonalInfoProps) => {
             setCandidates(
               candidates.map((candidate) =>
                 candidate.id === data.id
-                  ? { ...candidate, ...employee }
+                  ? {
+                      ...candidate,
+                      ...employee,
+                    }
                   : candidate
               )
             );

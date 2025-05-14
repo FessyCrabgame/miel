@@ -13,7 +13,7 @@ import {
 } from "@/components/ui";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import user from "@/public/assets/tcs61nk83dig738gik8qtkcx6ue7sgek.png";
@@ -28,9 +28,12 @@ export const AdminCandidates = () => {
   const token = localStorage.getItem("token") || "";
   const setCandidates = useCandidates((state) => state.setCandidates);
   const candidates = useCandidates((state) => state.data);
+  const hasFetched = useRef(false);
 
   useEffect(() => {
-    console.log(token);
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
     (async () => {
       const endpointToCall = "/api/admin/candidates/";
       const response = await fetchGetEndpoint(endpointToCall, token);
@@ -157,7 +160,7 @@ export const AdminCandidates = () => {
                   {objectData.phone}
                 </TableCell>
                 <TableCell className={css.tableCellCheck}>
-                  <Checkbox className="ml-5" checked={false} />
+                  <Checkbox className="ml-5" checked={true} />
                 </TableCell>
                 <TableCell className={`text-center ${css.tableCellAge}`}>
                   {objectData.age} лет
